@@ -12,3 +12,8 @@ public class Library {
         return true
     }
 }
+
+/**
+ * hello 哈
+ */
+public const val HELLO_KOTLIN = "Hello"

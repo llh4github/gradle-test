@@ -7,18 +7,31 @@ plugins {
 
     `maven-publish`
 }
-
+val generateSources = tasks.register<Jar>("generateSources") {
+    archiveClassifier.set("sources")
+    from(sourceSets["main"].allSource)
+}
+val generateJavadoc = tasks.register<Jar>("generateJavadoc") {
+    archiveClassifier.set("javadoc")
+}
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
 }
 publishing {
     publications {
-        create<MavenPublication>("maven") {
-            groupId = "ll4github.demo"
-            artifactId = "library"
+        create<MavenPublication>("dist") {
+            group = project.group
+//            artifactId = project.name
+            version = project.version.toString()
+            artifactId = "lib"
+            artifact(generateSources)
+            artifact(generateJavadoc)
             version = "0.1"
             from(components["java"])
+            pom {
+                name.set("${project.group}:lib")
+            }
         }
     }
 }
