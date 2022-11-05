@@ -3,11 +3,13 @@
  */
 package gradle.test
 
+import ll4github.demo.Library
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
 class LibraryTest {
-    @Test fun someLibraryMethodReturnsTrue() {
+    @Test
+    fun someLibraryMethodReturnsTrue() {
         val classUnderTest = Library()
         assertTrue(classUnderTest.someLibraryMethod(), "someLibraryMethod should return 'true'")
     }
